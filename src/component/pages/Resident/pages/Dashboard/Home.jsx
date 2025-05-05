@@ -21,6 +21,7 @@ import {
   MdPrecisionManufacturing,
 } from "react-icons/md";
 import { GetMaintenance } from "../../../Resident/Api/api";
+import { DeleteNotes, GetNotes } from '../../../../services/Api/api';
 
 
 const url = "https://sms-backend-blue.vercel.app";
@@ -221,6 +222,19 @@ useEffect(() => {
     });
   };
 
+  //get notes
+
+  const [Notes, setNotes] = useState([])
+  const [lodingData, setlodingData] = useState(true)
+
+  useEffect(() => {
+      FNdata()
+    }, [0])
+  
+    const FNdata = () => {
+      GetNotes(setNotes, setlodingData)
+    }
+
   return (
     <div className="bg-[#f0f5fb] h-full">
       <Sidebar toggleNav={toggleNav} data={data} />
@@ -357,52 +371,69 @@ useEffect(() => {
 
           </div>
           <div className="grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-1 gap-4">
-            <div className="bg-white p-4 rounded-lg shadow-lg col-span-1">
-              <div className=" bg-white rounded-lg">
-                <div className="flex justify-between items-center mb-5">
-                  <h2 className="text-lg text-blue-600 font-semibold">
-                    Important Numbers
-                  </h2>
-                </div>
-                <div className="space-y-4 h-80 overflow-y-auto pr-2">
-                  {loading ? (
-                    <div className="flex justify-center h-full items-center">
-                      <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-[#4CC9FE]" />
-                    </div>
-                  ) : (
-                    <div className="space-y-4 max-h-80 overflow-y-auto pr-2">
-                      {contacts.map((contact) => (
-                        <div
-                          key={contact._id}
-                          className="border border-gray-200 rounded-md p-3 shadow-sm bg-gray-50 hover:shadow-md transition-shadow"
-                        >
-                          <div>
-                            <p className="text-sm text-blue-400">
-                              Name :{" "}
-                              <span className="text-black capitalize font-semibold">
-                                {contact.Fullname}
-                              </span>
-                            </p>
-                            <p className="text-sm text-blue-400">
-                              Phone Number :{" "}
-                              <span className="text-black capitalize font-semibold">
-                                {contact.Phonenumber}
-                              </span>
-                            </p>
-                            <p className="text-sm text-blue-400">
-                              Work :{" "}
-                              <span className="text-black capitalize font-semibold">
-                                {contact.Work}
-                              </span>
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+          <div className="bg-white p-4 rounded-lg shadow-lg col-span-1">
+  {/* Important Numbers Section */}
+  <div className="bg-white rounded-lg">
+    <div className="flex justify-between items-center mb-5">
+      <h2 className="text-lg text-blue-600 font-semibold">Important Numbers</h2>
+    </div>
+    <div className="space-y-4 max-h-60 overflow-y-auto pr-2">
+      {loading ? (
+        <div className="flex justify-center h-full items-center">
+          <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-[#4CC9FE]" />
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {contacts.map((contact) => (
+            <div
+              key={contact._id}
+              className="border border-gray-200 rounded-md p-3 shadow-sm bg-gray-50 hover:shadow-md transition-shadow"
+            >
+              <div>
+                <p className="text-sm text-blue-400">
+                  Name: <span className="text-black capitalize font-semibold">{contact.Fullname}</span>
+                </p>
+                <p className="text-sm text-blue-400">
+                  Phone Number: <span className="text-black capitalize font-semibold">{contact.Phonenumber}</span>
+                </p>
+                <p className="text-sm text-blue-400">
+                  Work: <span className="text-black capitalize font-semibold">{contact.Work}</span>
+                </p>
               </div>
             </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+
+  {/* Notes Section */}
+  <div className="bg-white rounded-lg mt-6">
+    <div className="flex justify-between items-center mb-5">
+      <h2 className="text-lg text-blue-600 font-semibold">Notes</h2>
+    </div>
+    <div className="space-y-4 max-h-60 overflow-y-auto pr-2">
+      {lodingData ? (
+        <div className="flex justify-center h-full items-center">
+          <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-[#4CC9FE]" />
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {Notes.map((note) => (
+            <div
+              key={note._id}
+              className="border border-gray-200 rounded-md p-3 shadow-sm bg-gray-50 hover:shadow-md transition-shadow"
+            >
+              <h2 className="text-base font-semibold text-[#5678e9] mb-1">{note.Title}</h2>
+              <p className="text-sm text-gray-700">{note.Description}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+
             <div className="bg-white rounded-lg shadow-xl p-4 col-span-1">
   {/* Header */}
   <div className="flex items-center justify-between mb-6">
@@ -495,22 +526,23 @@ useEffect(() => {
       {facility.map((facility) => (
         <div
           key={facility._id}
-          className="border border-gray-200 rounded-md p-3 shadow-sm bg-gray-50 hover:shadow-md transition-shadow"
+          className="border border-gray-200 rounded-md p-4 shadow-sm bg-gray-50 hover:shadow-md transition-shadow"
         >
-          <div className="flex flex-col space-y-2 w-full">
-            <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-400">Facility Name</span>
-            </div>
-            <p className="text-lg font-semibold text-gray-800">{facility.Facility_Name}</p>
+          {/* Facility Name */}
+          <div className="flex items-center space-x-2 mb-2">
+            <span className="text-sm text-gray-400">Facility Name</span>
+          </div>
+          <p className="text-lg font-semibold text-gray-800">{facility.Facility_Name}</p>
 
-            <div className="flex items-center space-x-2 pt-2">
-              <span className="text-sm text-gray-400">Description</span>
-            </div>
-            <p className="text-base text-gray-700">{facility.Description}</p>
+          {/* Description */}
+          <div className="flex items-center space-x-2 pt-2 mb-2">
+            <span className="text-sm text-gray-400">Description</span>
+          </div>
+          <p className="text-base text-gray-700">{facility.Description}</p>
 
-            <div className="flex items-center space-x-2 pt-2">
-              <span className="text-sm text-gray-400">Scheduled Date</span>
-            </div>
+          {/* Scheduled Date */}
+          <div className="flex items-center space-x-2 pt-2 mt-3">
+            <span className="text-sm text-gray-400">Scheduled Date</span>
             <p className="text-base text-gray-700">
               {new Date(facility.Schedule_Service_Date).toLocaleDateString()}
             </p>
@@ -520,48 +552,62 @@ useEffect(() => {
     </div>
   )}
 </div>
+
+
               </div>
             </div>
             <div className="bg-white p-4 rounded-lg shadow-lg col-span-1">
               <div className=" bg-white rounded-lg">
                 
-        <h2 className="text-lg text-blue-600 font-semibold mb-4">Upcoming Activity</h2>
-                <div className="border border-gray-200 rounded-md p-3 shadow-sm bg-gray-50 hover:shadow-md transition-shadow">
-    
-      {Loding ? (
-                  <div className='flex justify-center'>
-                  <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-[#4CC9FE]" />
-                </div>
-                ): (
-        <div className="space-y-4">
-          {/* Dynamically render each activity item */}
-          {activities.map((activity, index) => (
-            <div className="flex items-center justify-between" key={index}>
-              <div className="flex items-center space-x-3">
-                {/* Use different colors for different activities based on type */}
-                <div
-                  className={`w-8 h-8 flex items-center justify-center rounded-full ${
-                    activity.color ? `bg-${activity.color}-100` : 'bg-slate-200'
-                  }  'gray-600' font-bold`}
-                >
-                  {getFirstLetter(activity.title)}
-                </div>
-                <div>
-                  <p className="text-gray-900 font-medium">{activity.title}</p>
-                  <p className="text-gray-500 text-sm">{activity.time}</p>
-                </div>
-              </div>
-              <p className="text-gray-500 text-sm"> {new Date(activity.date).toLocaleDateString("en-US", {
-                              day: "2-digit",
-                              month: "2-digit",
-                              year: "numeric",
-                            })}</p>
-            </div>
-          ))}
-        </div>
-     
-            ) }
+        <h2 className="text-lg text-blue-600 font-semibold mb-4">General Updates</h2>
+  {Loding ? (
+    <div className="flex justify-center">
+      <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-[#4CC9FE]" />
     </div>
+  ) : (
+    <div className="space-y-3">
+      {/* Dynamically render each activity item */}
+      {activities.map((activity, index) => (
+        <div key={index} className="border border-gray-300 p-3 rounded-md shadow-sm bg-white hover:shadow-md transition-shadow">
+          {/* Title & Description Box */}
+          <div className="flex items-center space-x-2 mb-2">
+            {/* Activity Circle */}
+            <div
+              className={`w-7 h-7 flex items-center justify-center rounded-full ${activity.color ? `bg-${activity.color}-100` : 'bg-slate-200'} text-gray-600 font-semibold`}
+            >
+              {getFirstLetter(activity.title)}
+            </div>
+            <div>
+              <p className="text-gray-900 font-medium text-sm">{activity.title}</p>
+              <p className="text-gray-500 text-xs">{activity.description}</p>
+            </div>
+          </div>
+
+          {/* Time Box */}
+          <div className="flex justify-between text-xs text-gray-500">
+            <p className="font-semibold text-gray-600">Time:</p>
+            <p>{activity.time}</p>
+          </div>
+
+          {/* Date Box */}
+          <div className="flex justify-between text-xs text-gray-500 mt-1">
+            <p className="font-semibold text-gray-600">Date:</p>
+            <p>
+              {new Date(activity.date).toLocaleDateString("en-US", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+              })}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+
+
+
+
               </div>
             </div>
           </div>
