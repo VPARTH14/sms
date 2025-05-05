@@ -275,7 +275,7 @@ useEffect(() => {
     totle_Noch="bg-[#2563eb]"
     totle_simbol={<MdAccountBalanceWallet />}
   />
-<Link to="http://localhost:5173/manager/financial_management/income">
+<Link to="https://sms-peach-gamma.vercel.app/manager/financial_management/income">
   <Home_totle_card
     total_title="Total Other Income"
     total_price={loadingIncome ? "..." : `₹${totalIncome.toLocaleString()}`}
@@ -287,7 +287,7 @@ useEffect(() => {
     totle_simbol={<MdOutlineAttachMoney />}
   />
   </Link>
-<Link to="http://localhost:5173/manager/financial_management/expense">
+<Link to="https://sms-peach-gamma.vercel.app/manager/financial_management/expense">
   <Home_totle_card
     total_title="Total Expense"
     total_price={loadingExpense ? "..." : `₹${totalAmount.toLocaleString()}`}
@@ -300,7 +300,7 @@ useEffect(() => {
   />
   </Link>
 
-<Link to="http://localhost:5173/manager/resident_management">
+<Link to="https://sms-peach-gamma.vercel.app/manager/resident_management">
 <Home_totle_card
     total_title="Total Unit"
     total_price={loadingResident ? "..." : residentData.length}
@@ -459,7 +459,7 @@ useEffect(() => {
   <div className="bg-white p-5 rounded-xl shadow-md lg:col-span-2">
     <div className="flex justify-between items-center mb-4">
       <h2 className="text-lg font-semibold text-gray-800">Visitors Log</h2>
-      <a href="#" className="text-blue-600 text-sm hover:underline">View all</a>
+      <a href="https://sms-peach-gamma.vercel.app/manager/security_management/visitor_logs" className="text-blue-600 text-sm hover:underline">View all</a>
     </div>
     {loding ? (
                             <div className='flex justify-center'>
@@ -614,7 +614,7 @@ useEffect(() => {
   
   <div className="flex justify-between items-center mb-4">
   <h2 className="text-xl font-semibold mb-4 text-gray-700">Maintenance Details</h2>
-      <a href="http://localhost:5173/manager/financial_management/income" className="text-blue-600 mb-4 text-sm hover:underline">View all</a>
+      <a href="https://sms-peach-gamma.vercel.app/manager/financial_management/income" className="text-blue-600 mb-4 text-sm hover:underline">View all</a>
     </div>
   {loadingMaintenance ? (
     <div className="flex justify-center items-center py-6">
