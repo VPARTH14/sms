@@ -1,68 +1,49 @@
 import React, { useEffect, useState } from 'react'
-import { GetAnnouncement } from '../../../../services/Api/api';
+import { Facility_Management_Get } from '../../../../services/Api/api';
 
 const Activity = () => {
-    
-      const [ActivityData, setActivityData] = useState([]);
+  const [facility, setFacility] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Fetch Event Data on component mount
-  const [Loding, setLoding] = useState(true)
   useEffect(() => {
-    
-    fetchActivities();
+    fetchFacility();
   }, []);
 
-
-  const fetchActivities = async () => {
-    GetAnnouncement(setActivityData,setLoding)
+  const fetchFacility = async () => {
+    Facility_Management_Get(setFacility, setLoading);
   };
- 
-    
 
-    return (
-        <div className="overflow-x-auto bg-white p-4 rounded-xl shadow-lg">
-        <h2 className="text-2xl font-bold mb-4">Activity Participation</h2>
-        {Loding ? (
-                  <div className='flex justify-center'>
-                  <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-[#4CC9FE]" />
+  return (
+    <div className="overflow-x-auto bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
+      <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Amenities</h2>
+
+      <div className="mt-4">
+        {loading ? (
+          <div className="flex justify-center items-center h-32">
+            <div className="animate-spin rounded-full h-8 w-8 border-t-4 border-blue-500" />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-6 max-h-[26rem] overflow-y-auto pr-1.5">
+            {facility.map((item) => (
+              <div
+                key={item._id}
+                className="border border-gray-200 rounded-xl p-4 shadow-sm bg-white hover:shadow-lg transition duration-200"
+              >
+                <h3 className="text-xl font-semibold text-gray-900 mb-1">{item.Facility_Name}</h3>
+                <p className="text-gray-500 text-sm mb-3">{item.Description}</p>
+                <div className="text-sm text-gray-400 flex items-center gap-2">
+                  📅 Scheduled: 
+                  <span className="text-gray-700 font-medium">
+                    {new Date(item.Schedule_Service_Date).toLocaleDateString()}
+                  </span>
                 </div>
-                ) : (
-        <table className="w-full table-auto border-collapse rounded-t-lg overflow-hidden">
-          <thead className="bg-[#eef1fd] text-gray-700">
-            <tr>
-              <th className="px-4 py-2 text-left">Participator Name</th>
-              <th className="px-4 py-2 text-left">Description</th>
-              <th className="px-4 py-2 text-left">Activity Time</th>
-              <th className="px-4 py-2 text-left">Activity Date</th>
-              <th className="px-4 py-2 text-left">Activity Name</th>
-            </tr>
-          </thead>
-    
-          <tbody>
-            {ActivityData.map((item, index) => (
-             <tr key={index} className="border-b">
-             <td className="px-4 py-3 flex items-center space-x-2">
-               <img
-                 src="https://res.cloudinary.com/ddf3pgcld/image/upload/v1733770800/shfpe3pccvr5qrpuldzh.png"
-                 alt="Profile"
-                 className="w-8 h-8 rounded-full border border-gray-400"
-               />
-               <span>{item.title}</span>
-             </td>
-             <td className="px-4 py-3">{item.description}</td>
-             <td className="px-4 py-3">{item.time}</td>
-             <td className="px-4 py-3"> {new Date(item.date).toLocaleDateString("en-US", {
-                     day: "2-digit",
-                     month: "2-digit",
-                     year: "numeric",
-                   })}</td>
-             <td className="px-4 py-3">{item.title}</td>
-           </tr>
+              </div>
             ))}
-          </tbody>
-        </table>  )}
+          </div>
+        )}
       </div>
-    )
+    </div>
+  )
 }
 
-export default Activity
+export default Activity;
