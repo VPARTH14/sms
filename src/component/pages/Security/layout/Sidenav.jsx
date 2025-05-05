@@ -53,14 +53,7 @@ export default function Sidenav({ toggleNav, data }) {
                   Visitor Tracking
                   </Link>
                 </li>
-                <li className="ml-6">
-                  <Link
-                    to="/security/emergency"
-                    className={`text-nowrap block px-4 py-2 hover:bg-gray-100 text-black border-l-4 ${pathname.startsWith("/security/emergency") ? "border-black font-semibold" : ""}`}
-                  >
-                    Emergency Management
-                  </Link>
-                </li>
+              
                 
               </ul>
             </div>
