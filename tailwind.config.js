@@ -1,4 +1,6 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
+import plugin from 'tailwindcss/plugin'
+
 export default {
   content: [
     "./index.html",
@@ -11,6 +13,13 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addBase }) {
+      addBase({
+        'h1, h2, h3, h4, h5, h6, p, span, a, li, td, th': {
+          textTransform: 'capitalize',
+        },
+      });
+    }),
+  ],
 }
-
