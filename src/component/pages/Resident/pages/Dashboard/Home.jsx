@@ -481,7 +481,7 @@ useEffect(() => {
               <div className=" bg-white rounded-lg">
                 <div className="flex justify-between items-center mb-5">
                   <h2 className="text-lg text-blue-600 font-semibold">
-                    Upcoming Bookings
+                    Amenities
                   </h2>
 
                 </div>
