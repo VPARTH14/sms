@@ -153,14 +153,27 @@ const Otherincome = () => {
                     Total Member:
                     <span className="ml-2 text-base font-semibold text-gray-700">{item.TotalMember}</span>
                   </div>
-                  <div className="text-sm text-gray-500">
-                    Date:
-                    <span className="ml-2 text-base font-semibold text-gray-700">{item.Date}</span>
-                  </div>
-                  <div className="text-sm text-gray-500">
-                    Due Date:
-                    <span className="ml-2 text-base font-semibold text-gray-700">{item.Due_Date}</span>
-                  </div>
+                 <div className="text-sm text-gray-500">
+  Date:
+  <span className="ml-2 text-base font-semibold text-gray-700">
+    {new Date(item.Date).toLocaleDateString("en-IN", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+    })}
+  </span>
+</div>
+<div className="text-sm text-gray-500">
+  Due Date:
+  <span className="ml-2 text-base font-semibold text-gray-700">
+    {new Date(item.Due_Date).toLocaleDateString("en-IN", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+    })}
+  </span>
+</div>
+
                   <p className="text-gray-500 text-sm font-bold">{item.Description}</p>
                 </div>
               </div>
