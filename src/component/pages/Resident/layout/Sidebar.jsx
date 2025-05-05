@@ -89,21 +89,21 @@ export default function Sidenav({ toggleNav, data }) {
             Events Participation
           </Link>
 
-{/*           <Link
+          <Link
             onClick={toggleDropdown}
             aria-current={pathname.startsWith("/resident/community") ? "page" : undefined}
             className={`text-nowrap relative p-3 ms-4 m-2 rounded-lg text-lg transition-colors duration-300 flex items-center ${pathname.startsWith("/resident/community")
               ? "bg-gradient-to-r from-blue-600 to-blue-900 text-white font-semibold"
               : "hover:bg-gray-100 text-black"
               }`}
-          > */}
-{/*             Active Indicator */}
-{/*             <RiCommunityFill className="inline mr-2" />
+          >
+            {/* Active Indicator */}
+            <RiCommunityFill className="inline mr-2" />
             Community
-          </Link> */}
+          </Link>
 
           {/* Dropdown Menu */}
-{/*           {isDropdownOpen && (
+          {/* {isDropdownOpen && (
             <div
               className={`mt-2 w-full bg-white rounded-lg overflow-hidden transition-all duration-500 ${isDropdownOpen ? "max-h-screen" : "max-h-0"
                 }`}
@@ -137,23 +137,23 @@ export default function Sidenav({ toggleNav, data }) {
             </div>
           )} */}
 
-          // <Link
-          //   onClick={toggleComplaintTrackingDropdown}
-          //   aria-current={pathname.startsWith("/resident/payment_portal") ? "page" : undefined}
-          //   className={`text-nowrap relative p-3 ms-4 m-2 rounded-lg text-lg block transition-colors duration-300 flex text-black items-center ${pathname.startsWith("/resident/payment_portal")
-          //     ? "bg-gradient-to-r from-blue-600 to-blue-900 text-white font-semibold"
-          //     : "hover:bg-gray-100"
-          //     }`}
-          // >
-          //   {/* {pathname.startsWith("/resident/payment_portal") && (
-          //     <div className="absolute -left-4 top-0 bottom-0 w-2 bg-blue-600 rounded-r-lg"></div>
-          //   )} */}
-          //   <FaCcAmazonPay className="inline mr-2" />
-          //   Payment Portal
-          // </Link>
+          {/* <Link
+            onClick={toggleComplaintTrackingDropdown}
+            aria-current={pathname.startsWith("/resident/payment_portal") ? "page" : undefined}
+            className={`text-nowrap relative p-3 ms-4 m-2 rounded-lg text-lg block transition-colors duration-300 flex text-black items-center ${pathname.startsWith("/resident/payment_portal")
+              ? "bg-gradient-to-r from-blue-600 to-blue-900 text-white font-semibold"
+              : "hover:bg-gray-100"
+              }`}
+          > */}
+            {/* {pathname.startsWith("/resident/payment_portal") && (
+              <div className="absolute -left-4 top-0 bottom-0 w-2 bg-blue-600 rounded-r-lg"></div>
+            )} */}
+            {/* <FaCcAmazonPay className="inline mr-2" />
+            Payment Portal
+          </Link> */}
 
-          {/* Dropdown Menu */}
-{/*           {isComplaintTrackingDropdown && (
+          {/* Dropdown Menu
+          {isComplaintTrackingDropdown && (
             <div
               className={`mt-2 w-full bg-white rounded-lg overflow-hidden transition-all duration-500 ${isComplaintTrackingDropdown ? "max-h-screen" : "max-h-0"
                 }`}
