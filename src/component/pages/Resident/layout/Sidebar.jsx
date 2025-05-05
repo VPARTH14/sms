@@ -89,18 +89,18 @@ export default function Sidenav({ toggleNav, data }) {
             Events Participation
           </Link>
 
-          <Link
+          {/* <Link
             onClick={toggleDropdown}
             aria-current={pathname.startsWith("/resident/community") ? "page" : undefined}
             className={`text-nowrap relative p-3 ms-4 m-2 rounded-lg text-lg transition-colors duration-300 flex items-center ${pathname.startsWith("/resident/community")
               ? "bg-gradient-to-r from-blue-600 to-blue-900 text-white font-semibold"
               : "hover:bg-gray-100 text-black"
               }`}
-          >
+          > */}
             {/* Active Indicator */}
-            <RiCommunityFill className="inline mr-2" />
+            {/* <RiCommunityFill className="inline mr-2" />
             Community
-          </Link>
+          </Link> */}
 
           {/* Dropdown Menu */}
           {/* {isDropdownOpen && (
