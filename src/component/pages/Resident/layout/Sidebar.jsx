@@ -86,7 +86,7 @@ export default function Sidenav({ toggleNav, data }) {
               <div className="absolute -left-4 top-0 bottom-0 w-2 bg-blue-600 rounded-r-lg"></div>
             )} */}
             <MdDateRange className="inline mr-2" />
-            Events Participation
+            Community Updates
           </Link>
 
           {/* <Link
