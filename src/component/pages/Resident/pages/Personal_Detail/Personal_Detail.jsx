@@ -168,11 +168,11 @@ const Personal_Detail = () => {
   <div className="flex flex-col lg:flex-row gap-6">
     {/* Left Section: Profile Image + Details */}
     <div className="flex flex-col sm:flex-row items-center gap-4 flex-1">
-      <img
-        src="https://res.cloudinary.com/ddf3pgcld/image/upload/v1733770800/shfpe3pccvr5qrpuldzh.png"
-        alt="Profile"
-        className="rounded-full w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 border border-gray-300"
-      />
+     <img
+  src={FormData.residentphoto || "https://res.cloudinary.com/ddf3pgcld/image/upload/v1733770800/shfpe3pccvr5qrpuldzh.png"} // Use the fetched image URL
+  alt="Profile"
+  className="rounded-full w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 border border-gray-300"
+/>
       <div className="w-full">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-gray-700 mt-4 sm:mt-0">
           {[
