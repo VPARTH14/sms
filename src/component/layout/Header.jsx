@@ -37,11 +37,12 @@ const Header = ({ toggleNav }) => {
             {FormData ? (
               <div className="flex items-center">
                 <div className="Profie-img mr-3">
-                  <img
-                    src={FormData.Image || "/images/user.png"}
-                    alt="Profile"
-                    className="w-8 h-8 rounded-full"
-                  />
+                 
+                    <img
+  src={FormData.residentphoto || "/images/user.png"} // Use the fetched image URL
+  alt="Profile"
+  className="w-8 h-8 rounded-full"
+/>
                 </div>
                 <div className="profile-text">
                   <p className="font-medium">{FormData.Firstname || "User"} {FormData.Lastname || ""}</p>
